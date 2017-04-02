@@ -1,4 +1,3 @@
-# deep-learning-talk
-"Make Neural Networks Great Again" talk
+# Make A.I great again.
 
-Repo for all example code used in talk
+All the TensorFlow examples for my talk on Deep Learning
