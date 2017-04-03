@@ -20,6 +20,9 @@ B = tf.convert_to_tensor(np.array([[-1., -3.], [2., -1.]]))
 add = A + B
 mul = tf.matmul(A, B)
 
+print('Add:')
 print(sess.run(add))
+
+print('\r\nMultiply:')
 print(sess.run(mul))
 
