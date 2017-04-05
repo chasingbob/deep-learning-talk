@@ -19,26 +19,25 @@ batch_size = 64
 display_step = 10
 
 # Network Parameters
-n_input = 784 # MNIST data input (img shape: 28*28)
-n_classes = 10 # MNIST total classes (0-9 digits)
-dropout = 0.75 # Dropout, probability to keep units
+n_input = 784 # img shape: 28*28
+n_classes = 10 # 0-9 digits
+dropout = 0.75 
 
 # tf Graph input
 x = tf.placeholder(tf.float32, [None, n_input])
 y = tf.placeholder(tf.float32, [None, n_classes])
-keep_prob = tf.placeholder(tf.float32) #dropout (keep probability)
+keep_prob = tf.placeholder(tf.float32) 
 
 
-# Create some wrappers for simplicity
 def conv2d(x, W, b, strides=1):
-    # Conv2D wrapper, with bias and relu activation
+    # Conv2D layer with bias and relu activation
     x = tf.nn.conv2d(x, W, strides=[1, strides, strides, 1], padding='SAME')
     x = tf.nn.bias_add(x, b)
     return tf.nn.relu(x)
 
 
 def maxpool2d(x, k=2):
-    # MaxPool2D wrapper
+    # MaxPool2D layer
     return tf.nn.max_pool(x, ksize=[1, k, k, 1], strides=[1, k, k, 1],
                           padding='SAME')
 
@@ -72,13 +71,9 @@ def conv_net(x, weights, biases, dropout):
 
 # Store layers weight & bias
 weights = {
-    # 5x5 conv, 1 input, 32 outputs
     'wc1': tf.Variable(tf.random_normal([5, 5, 1, 32])),
-    # 5x5 conv, 32 inputs, 64 outputs
     'wc2': tf.Variable(tf.random_normal([5, 5, 32, 64])),
-    # fully connected, 7*7*64 inputs, 1024 outputs
     'wd1': tf.Variable(tf.random_normal([7*7*64, 1024])),
-    # 1024 inputs, 10 outputs (class prediction)
     'out': tf.Variable(tf.random_normal([1024, n_classes]))
 }
 
@@ -92,7 +87,7 @@ biases = {
 # Construct model
 model = conv_net(x, weights, biases, keep_prob)
 
-# Define loss and optimizer
+# loss fuction and optimizer
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=model, labels=y))
 optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate).minimize(cost)
 
@@ -122,8 +117,7 @@ with tf.Session() as sess:
             loss, acc = sess.run([cost, accuracy], feed_dict={x: batch_x,
                                                               y: batch_y,
                                                               keep_prob: 1.})
-            print("Iter " + str(step*batch_size) + ", Minibatch Loss= " + \
-                  "{:.6f}".format(loss) + ", Training Accuracy= " + \
+            print("Iter " + str(step*batch_size) + ", Training Accuracy= " + \
                   "{:.5f}".format(acc))
             acc_vec.append(acc)
             epochs.append(step)
