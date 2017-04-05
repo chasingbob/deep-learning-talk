@@ -13,13 +13,14 @@ print(a, b)
 
 # Run a session
 sess = tf.Session()
-print("adder:")
 print(sess.run([a, b]))
 
-# More complex operations
 # Placeholders - external inputs, it's a contract
 a = tf.placeholder(tf.float32)
 b = tf.placeholder(tf.float32)
+
+# Variable
+c = tf.Variable(1, name="var1")
 
 print('\r\nExecute graph')
 adder_node = a + b
