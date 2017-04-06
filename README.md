@@ -1,8 +1,11 @@
-# Make A.I great again.
+# Deep Learning
+
+#### Make A.I great again
+
+All the code examples for my talk on Deep Learning with TensorFlow and a list of resources I used.
 
 
 ### TensorFlow Code examples
-
 
 [TensorFlow basics](https://github.com/chasingbob/deep-learning-talk/blob/master/00_basics.py)
 
