@@ -33,6 +33,4 @@ print(sess.run(mul))
 print('\r\nMultiply 2')
 print(sess.run(mul2, {a: [[1,2,3],[4,5,6]], b: [[7,8],[9,10],[11,12]]}))
 
-print('\r\nMultiply 3')
-print(sess.run(mul2, {a: [[1,2,3],[4,5,6]], b: B}))
 
